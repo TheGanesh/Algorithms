@@ -1,4 +1,4 @@
-package com.ganesh.com.ganesh.stack;
+package com.ganesh.stack;
 
 
 import java.util.Arrays;
