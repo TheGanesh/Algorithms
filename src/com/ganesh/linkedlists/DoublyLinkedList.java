@@ -43,7 +43,7 @@ public class DoublyLinkedList {
         tail = newNode;
     }
 
-    public void dllete(int i) {
+    public void delete(int i) {
 
         if (head.data == i) {
             head.nextNode.previousNode = null;
@@ -101,7 +101,7 @@ public class DoublyLinkedList {
         dll.printFromHead();
         dll.insertLast(2);
         dll.printFromHead();
-        dll.dllete(2);
+        dll.delete(2);
         dll.insertLast(30);
         dll.insertLast(81);
         dll.insertFirst(01);
