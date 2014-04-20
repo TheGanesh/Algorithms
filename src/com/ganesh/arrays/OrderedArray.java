@@ -75,7 +75,7 @@ public class OrderedArray {
 
         orderedArray.delete(9);
         orderedArray.print();
-        System.out.println("index of 7 is:" + orderedArray.find(7));
+        System.out.println("index of 7 is:" + orderedArray.find(200));
 
     }
 }
