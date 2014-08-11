@@ -1,6 +1,8 @@
 package com.ganesh.trees;
 
 
+import sun.print.resources.serviceui_pt_BR;
+
 public class BinarySearchTree {
 
     private Node root;
@@ -38,22 +40,45 @@ public class BinarySearchTree {
     }
 
 
-    public void delete(int key) {
-
-    }
-
     public int find(int key) {
-        return 0;
+        Node current = root;
+        while (current != null) {
+
+            if (key == current.key) {
+                return current.value;
+            } else if (key < current.key) {
+                current = current.leftChild;
+            } else if (key > current.key) {
+                current = current.rightChild;
+            }
+
+
+        }
+        return -1;
     }
 
 
     public int findMax() {
-        return 0;
+        Node current = root;
+        Node parent = root;
+        while (current != null) {
+
+            parent = current;
+            current = current.rightChild;
+        }
+        return parent.key;
     }
 
 
     public int findMin() {
-        return 0;
+        Node current = root;
+        Node parent = root;
+        while (current != null) {
+
+            parent = current;
+            current = current.leftChild;
+        }
+        return parent.key;
     }
 
     public void inOrder(Node current) {
@@ -97,28 +122,136 @@ public class BinarySearchTree {
         }
     }
 
-    public boolean isLeaf(Node node) {
+    public boolean isLeafNode(Node node) {
         return (node.leftChild == null && node.rightChild == null);
     }
 
+    public boolean isNodehasSingleChild(Node node) {
+        return (node.leftChild == null || node.rightChild == null);
+    }
+
+    public void delete(int key) {
+
+
+        Node delNode = root;
+        Node parent = root;
+        boolean isLeftChild = false;
+        while (key != delNode.key) {
+            parent = delNode;
+
+            if (key < delNode.key) {
+                delNode = delNode.leftChild;
+                isLeftChild = true;
+            } else if (key > delNode.key) {
+                delNode = delNode.rightChild;
+                isLeftChild = false;
+            }
+
+        }
+
+
+        if (delNode.leftChild == null && delNode.rightChild == null) {
+            if (isLeftChild) {
+                parent.leftChild = null;
+            } else {
+                parent.rightChild = null;
+            }
+        } else if (delNode.leftChild == null && delNode.rightChild != null) {
+            if (isLeftChild) {
+                parent.leftChild = delNode.rightChild;
+            } else {
+                parent.rightChild = delNode.rightChild;
+            }
+        } else if (delNode.leftChild != null && delNode.rightChild == null) {
+            if (isLeftChild) {
+                parent.leftChild = delNode.leftChild;
+            } else {
+                parent.rightChild = delNode.leftChild;
+            }
+        } else {
+
+            Node current = delNode.rightChild;
+            Node successor = delNode;
+            Node successorParent = delNode;
+            while (current != null) {
+                successorParent = successor;
+                successor = current;
+                current = current.leftChild;
+            }
+
+            //you properly connected successor with all required details
+            if (successor != delNode.rightChild) {
+                successorParent.leftChild = successor.rightChild;
+                successor.rightChild = delNode.rightChild;
+            }
+            successor.leftChild = delNode.leftChild;
+
+            // Now connecting successor to the delNode parent to form complete tree
+            if (delNode == root) {
+                root = successor;
+            } else if (isLeftChild) {
+                parent.leftChild = successor;
+            } else {
+                parent.rightChild = successor;
+            }
+
+
+        }
+
+    }
+
+
     public static void main(String[] args) {
 
-        BinarySearchTree bst = new BinarySearchTree(20, 1);
-        bst.insert(10, 2);
-        bst.insert(5, 3);
-        bst.insert(15, 4);
-        bst.insert(30, 5);
-        bst.insert(25, 6);
-        bst.insert(35, 7);
+        BinarySearchTree bst = new BinarySearchTree(50, 1);
+        bst.insert(75, 2);
+        bst.insert(62, 3);
+        bst.insert(87, 4);
+        bst.insert(77, 5);
+        bst.insert(79, 6);
+        bst.insert(93, 7);
+        bst.insert(30, 2);
+        bst.insert(20, 3);
+        bst.insert(40, 4);
+        bst.insert(35, 5);
+
 
         System.out.print("inOrder:");
         bst.traverse("INORDER");
         System.out.println("");
-        System.out.print("postOrder:");
-        bst.traverse("POSTORDER");
+
+        bst.delete(79);
+
+        System.out.print("After deleting 79 inOrder:");
+        bst.traverse("INORDER");
         System.out.println("");
-        System.out.print("preOrder:");
-        bst.traverse("PREORDER");
+
+        bst.delete(35);
+
+        System.out.print("after deleting 35 inOrder:");
+        bst.traverse("INORDER");
+        System.out.println("");
+
+        bst.insert(79, 0);
+        bst.insert(35, 0);
+
+        bst.delete(50);
+
+        System.out.print("after deleting 50 inOrder:");
+        bst.traverse("INORDER");
+        System.out.println("");
+
+
+//        System.out.println("");
+//        System.out.print("postOrder:");
+//        bst.traverse("POSTORDER");
+//        System.out.println("");
+//        System.out.print("preOrder:");
+//        bst.traverse("PREORDER");
+
+        //    System.out.println(bst.findMax());
+        //   System.out.println(bst.findMin());
+        // System.out.println(bst.find(100));
     }
 
 
