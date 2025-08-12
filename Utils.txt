@@ -1,0 +1,62 @@
+Array:  import java.util.Arrays or java.lang.System
+
+ int[] arr = new int[10]; //init
+ int[] arr = {10,20,30,40,50,60}; // literal initialization
+
+ Arrays.sort(arr);  //sorting
+ Arrays.binarySearch(arr,20); //searching, gives index of 1
+ Arrays.equals(arr1,arr2); // checks all elements equality
+ Arrays.copyOf(arr,arr.length); // returns copy of array
+ Arrays.copyOfRange(arr, 1, 5); // 20,30,40,50 (60 is exclusive)
+ Arrays.toString(arr); // prints arr for debugging purpose
+ Arrays.stream(arr); //provides IntStream which can be used to convert .boxed() if needed
+ Arrays.asList(1, 2, 3); // provides List<Integer>
+
+ int[] src = new int[] {1, 2, 3, 4, 5};
+ int[] dst = new int[3];
+ System.arraycopy(src, 1, dst, 0, 3); // Copies 2, 3, 4 into dst, here 3 is length(no. of elements) not index related
+
+ //from wrapper array to list
+ Integer[] wrapArray = new Integer[] { 1, 2, 3 };
+ List<Integer> list = Arrays.asList(wrapArray); // wrapper list
+
+ //from primitive array to list
+ List<Integer> list =        
+ Arrays.stream(arr).boxed().collect(Collectors.toList());
+ IntStream intStream = Arrays.stream(arr);
+
+//arraylist to primitive array, useful while not knowing the target array size hence create arraylist then output convert to an array.
+int[] arr = list.stream().mapToInt(i -> i).toArray();
+
+```
+int[] primitiveInts = {1, 2, 3};
+Integer[] wrappedInts = Arrays.stream(primitiveInts)
+                              .boxed()
+                              .toArray(Integer[]::new);
+int[] unwrappedInts = Arrays.stream(wrappedInts)
+                             .mapToInt(Integer::intValue)
+                             .toArray();
+```
+
+List to Set to avoid duplicates:
+ List<String> list = Arrays.asList("a","b");
+ Set<String> set = new HashSet<>(list);
+
+```
+PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((x, y) -> Integer.compare(y, x));
+priorityQueue.add(3);
+priorityQueue.add(1);
+System.out.println(priorityQueue.peek()); // Prints "3"
+```
+
+Tips:
+1. Always try to find extra space(LinkedHashMap) and reduce time complexity for any task, it can reduce time complexity to O(N) from O(N*2) .
+2. *** To enhance any brute force solution(without extra space) think if any sorting of existing array helps(only question don't require elements ordering)
+                    => If brute force is O(N*2) then sorting(N*logN) + Searching(logN) is better.
+      3.  for vs while loops: If you know no. of iteration at the start then for: is the way, otherwise while: as it allows modifying condition in the loop better.
+
+
+
+
+
+

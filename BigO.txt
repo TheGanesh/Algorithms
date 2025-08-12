@@ -1,0 +1,57 @@
+Ideal :
+
+ Insertion,deletion,search = O(1) < O(log N) < O(N) < O(N*logN) <O(N^2) < O(N!)
+
+ Arrays: 
+
+   Insertion unordered =   (Insertion point search O(1)+ insertion O(1))  = O(1)
+   Deletion unordered  =  (Search O(N)+deletion O(N)) = O(N) 
+   Search unordered =  O(N)
+
+   Insertion ordered = (Insertion point search O(N)+ insertion O(N))  =  O(N)
+   Deletion ordered =  (Search O(log N)+deletion O(N))  = O(N)  
+   Search ordered = O(log N)
+  
+Linked List: (Better memory usage & no need to move elements after insertion or deletion)
+
+   Insertion unordered =   (Insertion point search O(1)+ insertion O(1))  = O(1)
+   Deletion unordered  =  (Search O(N)+deletion O(1)) = O(N) 
+   Search unordered =  O(N)
+
+-  Simple linked list can be used to implement Stack.
+-  Double ended list can be used to implement Queue.
+
+Binary tree: best of ordered array & linked list
+
+   Insertion = (Search O(log N) + insertion O(1))  O(log N) 
+   Deletion = (Search O(log N) + deletion O(1))    O(log N)  
+   Search = O(logN)
+
+Pros/Cons : If sorted series then it is almost equal to linked list.
+
+Stack: O(1)
+   1. word reversal
+   2. delimiters matching
+   3. Infix to postfix
+   4. Postfix evaluation
+
+Queue: O(1)
+DeQueue : Double ended queue, can be inserted & deleted at both ends
+
+Binary search - O(log N)  
+
+Sorting:
+
+1. Bubble sort : O(N^2)     (Comparisons N*(N-1)/2,Swaps O(N^2) )   No extra memory only extra variable
+2. Selection sort: O(N^2)  (Comparisons N*(N-1)/2,Swaps O(N))   No extra memory only extra variable
+3. Insertion sort: O(N^2)   (Comparisons N*(N-1)/4,Array copy O(N)), better for partially sorted item when    
+                           compared to above two      No extra memory only extra variable
+  
+4. Merge sort: O(N*logN), takes extra array to sort(double memory)
+5.Quick sort: O(N*logN) & no extra memory required
+
+
+
+
+
+
